@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app"crudApp">
+<head>
+<style>
+.pessoas-list-style { margin: 30px 0px 0px 0px; width: auto; height: auto;  background-color: #FBEFEF; }
+</style>
+<title>CRUD SRSANTANA</title>
+<!-- Definicoes de arquivos do projeto para uso e acesso do devtools, assim como usings-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-resource.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> </head>
+<script type="text/javascript" src="./js/app.js"></script>
+<script type="text/javascript" src="./js/controller/ngPessoaService.js"></script>
+<script type="text/javascript" src="./js/controller/sharedController.js"></script>
+<script type="text/javascript" src="./js/controller/pessoasController.js"></script>
+<body class= 'pessoas-list-style col-lg-12' ng-app="crudApp" ng-controller="pessoasController">
+		<form class="form-inline">
+		    <div class="form-group">
+		        <input type="text" ng-model="procurar" class="form-control" placeholder="Procurar...">
+		    </div>
+		</form>
+		&nbsp;
+		<table class="table table-striped col-lg-12">
+			<thead>
+				<tr>
+					<th ng-click="orderBy(Name)">Name</th>
+					<th ng-click="orderBy(Street)">Street</th>
+					<th ng-click="orderBy(Number)">Number</th>
+					<th ng-click="orderBy(Neighborhood)">Neighborhood</th>
+					<th ng-click="orderBy(City)">City</th>
+					<th ng-click="orderBy(State)">State</th>
+					<th ng-click="orderBy(Cellphone)">Cellphone</th>
+					<th ng-click="orderBy(Phone)">Phone</th>
+					<th>Delete</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="pessoa in pessoas |filter:procurar | orderBy:orderKey:reverse">
+					<td style="width: 10%">{{pessoa.name}}</td>
+					<td style="width: 10%">{{pessoa.street}}</td>
+					<td style="width: 10%">{{pessoa.number}}</td>
+					<td style="width: 10%">{{pessoa.neighborhood}}</td>
+					<td style="width: 10%">{{pessoa.city}}</td>
+					<td style="width: 10%">{{pessoa.state}}</td>
+					<td style="width: 10%">{{pessoa.cellphone}}</td>
+					<td style="width: 10%">{{pessoa.phone}}</td>
+					<td>
+						<button type="button" class="btn btn-default"
+							ng-click="deletePessoa(pessoa.id)">
+							<span class="glyphicon glyphicon-trash"
+								aria-hidden="true"></span>
+						</button>
+					</td>
+					<td>
+					    <!-- Link para tela de detalhes-->
+						<a ng-href="pessoa/{{pessoa.id}}" class="btn btn-default"> 
+						<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></a>		
+					</td>
+				</tr>
+			<tbody>
+		</table>
+
+		<div>
+		     <!-- Link para tela de cadastro-->
+			<a ng-href="pessoa/save"  class="btn btn-primary col-lg-4">Register a Person</a>
+		</div>
+</body>
+</html>

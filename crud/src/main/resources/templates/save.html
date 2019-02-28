@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="crudApp">
+<head>
+<style>
+	.register-style {width: auto; height: auto; background-color:#FBEFEF; left:20%; top: 20%; position:absolute}
+	.clearfix {display: inline-block;}
+	.centralizado {background-color: #CEF6EC;font-size: 30px;text-align: center;}
+</style>
+<title>CRUD SRSANTANA</title>
+<!-- Definicoes de arquivos do projeto para uso e acesso do devtools, assim como usings-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-resource.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<script type="text/javascript" src="./../js/app.js"></script>
+<script type="text/javascript" src="./../js/controller/ngPessoaService.js"></script>
+<script type="text/javascript" src="./../js/controller/sharedController.js"></script>
+<script type="text/javascript" src="./../js/controller/pessoasController.js"></script>
+
+</head>
+<body class="register-style clearfix"  ng-controller="sharedController">
+		<div ng-if="isAdd()"  class ="panel-heading centralizado" >Register Form</div>
+		<div ng-if="!isAdd()" class ="panel-heading centralizado" >Details Form</div>
+		<div class="panel-body">
+			<form  class="col-lg-12">
+				<div>
+					<div class="form-group col-lg-6">
+						<label for="Name" >Name</label> <input ng-disabled="!isAdd()" type="text"
+							ng-model="pessoa.name" class="form-control" id="pessoaName"
+							placeholder="Name">
+					</div>
+					<div  class="form-group col-lg-6">
+						<label for="Street">Street</label> <input ng-disabled="!isAdd()" type="text"
+							ng-model="pessoa.street" class="form-control"
+							id="pessoaStreet" placeholder="Street">
+					</div>
+				</div>
+				&nbsp; 
+			    <div>
+					<div class="form-group col-lg-5">
+						<label for="Neighborhood">Neighborhood</label> <input ng-disabled="!isAdd()" type="text"
+							ng-model="pessoa.neighborhood" class="form-control" id="pessoaNeighborhood"
+							placeholder="Neighborhood">
+					</div>
+					<div class="form-group col-lg-5">
+						<label for="City">City</label> <input ng-disabled="!isAdd()" type="text"
+							ng-model="pessoa.city" class="form-control"
+							id="pessoaCity" placeholder="City">
+					</div>
+					<div  class="form-group col-lg-2">
+						<label for="Number">Number</label> 
+						<input type="text" ng-disabled="!isAdd()"
+							ng-model="pessoa.number" class="form-control"
+							id="pessoaNumber" placeholder="Number">
+					</div>			
+				</div>
+				&nbsp; 
+			    <div>
+			    	<div  class="form-group col-lg-4">
+						<label for="State">State</label> 
+						<input type="text" ng-disabled="!isAdd()"
+							ng-model="pessoa.state" class="form-control"
+							id="pessoaState" placeholder="State">
+					</div>
+					<div  class="form-group col-lg-4">
+						<label for="Cellphone">Cellphone</label> <input  type="text" ng-disabled="!isAdd()"
+							ng-model="pessoa.cellphone" class="form-control" id="pessoaCellphone"
+							placeholder="Cellphone">
+					</div>
+					<div  class="form-group col-lg-4">
+						<label for="City">Phone</label> <input type="text" ng-disabled="!isAdd()"
+							ng-model="pessoa.phone" class="form-control"
+							id="pessoaPhone" placeholder="Phone">
+					</div>
+				</div>
+				&nbsp; 
+				<div>
+				<button class="btn btn-primary col-lg-12" ng-if="isAdd()" ng-click ="savePessoa()" >Save</button>
+ 				</div>
+ 				&nbsp; 
+				<div>
+					<button class="btn btn-primary col-lg-12" ng-if="isAdd()" ng-click ="clearFormRegister()" >Clear</button>
+				</div>
+ 				&nbsp; 
+				<div>
+					<!-- Redireciona para o HOME (lista de pessoas)-->
+					<a href="http://localhost:{{PORT}}/pessoa" class="btn btn-primary col-lg-12">Return</a>
+				</div>
+				&nbsp;
+				<!-- Caso o usuario a tenha tentanto salvar alguem, mas, o form é imvalido, a mensagem de erro abaixo aparece-->
+				<div class="alert alert-danger" ng-show="getTentativeType() &&!verifyValidityForm() && isAdd()" role="alert">
+    				Por favor, preencha todos os campos
+				</div>
+				<!-- Caso o campo number não seja um numero, a mensagem de erro abaixo aparece-->
+				<div class="alert alert-danger" ng-show="!isNumberValid() && isAdd()" role="alert">
+					O campo Number precisa ser um numero
+				</div>
+			</form>
+		</div>
+</body>
+</html>

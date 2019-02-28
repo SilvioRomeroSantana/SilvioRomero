@@ -1,0 +1,4 @@
+--> O banco de dados foi instanciado com o nome 'crudsrsantana' e deve ser configurado de acordo com as informacoes do arquivo "application.porperties"
+--> Para executar Front End, rodar aplicação springboot e acessar o "localhost:8081/pessoa"
+--> Caso a porta precise ser mudada, modifcar variavel PORT no arquivo "application.porperties" e variavel chamada "$scope.PORT" no arquivo "sharedController.js"
+--> Infelizmente, não consegui realizar roteamento pelo front graças a incapacidade de entender por completo o spring-boot
