@@ -5,7 +5,6 @@ namespace ConsoleApp1
 {
     class Program
     {
-        //Pega a diferença maxima entre os elementos do array e seus anteriores
         private static int GetMaxDiffInArray(List<int> array)
         {
             //Guarda o menor valor encontrado ate agora
@@ -39,7 +38,7 @@ namespace ConsoleApp1
             return maxDiff == 0 ? -1 : maxDiff;
         }
 
-        private static void RunUnitTests()
+        static void Main(string[] args)
         {
             //casos de teste:
             //1º elemento: id do teste (usado para debug)
@@ -74,11 +73,6 @@ namespace ConsoleApp1
             }
 
             Console.ReadKey();
-        }
-
-        static void Main(string[] args)
-        {
-            RunUnitTests(testCases);
         }
     }
 }
